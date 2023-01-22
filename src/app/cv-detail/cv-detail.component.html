@@ -1,0 +1,27 @@
+<div class="alert alert-warning">Full informations about <b>{{cvItem.name}}</b></div>
+<div class="card">
+  <div class="card-header">
+    Personal Information
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{cvItem.personal_Information.fullname}}</h5>
+    <hr />
+    <p class="card-text"><b>City</b> : {{cvItem.personal_Information.cityname}}</p>
+    <p class="card-text"><b>Email</b> : {{cvItem.personal_Information.email}}</p>
+    <p class="card-text"><b>Mobile</b> : {{cvItem.personal_Information.mobile}}</p>
+  </div>
+</div>
+
+<div class="card mt-3 mb-3">
+  <div class="card-header">
+    Experience Information
+  </div>
+  <div class="card-body">
+    <p class="card-text"><b>Company</b> : {{cvItem.experience_Information.companyName}}</p>
+    <p class="card-text"><b>City</b> : {{cvItem.experience_Information.city}}</p>
+    <p class="card-text"><b>Company Field</b> : {{cvItem.experience_Information.companyField}}</p>
+  </div>
+</div>
+
+<a href="#" class="btn btn-primary" style="margin-right: 7px;" [routerLink]="['/update-cv' , cvItem.id]">Update</a>
+<a class="btn btn-danger" (click)="handleDelete()">Delete</a>

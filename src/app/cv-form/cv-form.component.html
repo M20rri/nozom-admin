@@ -1,0 +1,87 @@
+<form class="row g-3" name="temFrm" #temFrm="ngForm" (ngSubmit)="onSubmit()">
+  <ng-container *ngIf="!isLoading; else elseTemplate">
+    <div class="card-body" *ngIf="cvItem">
+      <div class="col-md-6">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" name="cvName" #cvName="ngModel" [(ngModel)]="cvItem.name"
+          [class.is-invalid]="cvName.invalid && cvName.touched" required>
+        <span class="text-danger" *ngIf="cvName.touched && cvName.errors?.['required']">
+          CV Name is required
+        </span>
+      </div>
+    </div>
+    <div class="card">
+      <h5 class="card-header">Experience Information</h5>
+      <div class="card-body">
+        <div class="col-md-6">
+          <label class="form-label">Company Name</label>
+          <input type="text" class="form-control" name="companyName" #companyName="ngModel"
+            [(ngModel)]="cvItem.experience_Information.companyName"
+            [class.is-invalid]="companyName.invalid && companyName.touched" [maxlength]="20" required>
+          <span class="text-danger" *ngIf="companyName.touched && companyName.errors?.['required']">
+            Company Name is required
+          </span>
+          <span class="text-danger" *ngIf="companyName.touched && companyName.errors?.['maxlength']">
+            Company Name Maximum length is 20 charachter
+          </span>
+        </div>
+        <div class="col-md-6 mt-3">
+          <label class="form-label">City</label>
+          <input type="text" class="form-control" name="city" [(ngModel)]="cvItem.experience_Information.city">
+        </div>
+        <div class="col-md-6 mt-3">
+          <label class="form-label">Company Field</label>
+          <textarea rows="4" class="form-control" name="companyField"
+            [(ngModel)]="cvItem.experience_Information.companyField"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h5 class="card-header">Personal Information</h5>
+      <div class="card-body">
+        <div class="col-md-6">
+          <label class="form-label">Fullname</label>
+          <input type="text" class="form-control" name="fullname" #fullname="ngModel"
+            [(ngModel)]="cvItem.personal_Information.fullname" [class.is-invalid]="fullname.invalid && fullname.touched"
+            required>
+          <span class="text-danger" *ngIf="fullname.touched && fullname.errors?.['required']">
+            FullName is required
+          </span>
+        </div>
+        <div class="col-md-6 mt-3">
+          <label class="form-label">City</label>
+          <input type="text" class="form-control" name="cityname" [(ngModel)]="cvItem.personal_Information.cityname">
+        </div>
+        <div class="col-md-6 mt-3">
+          <label class="form-label">Email</label>
+          <input type="text" class="form-control" name="email" #email="ngModel"
+            [(ngModel)]="cvItem.personal_Information.email" [class.is-invalid]="email.invalid && email.touched"
+            email required>
+          <span class="text-danger" *ngIf="email.touched && email.errors?.['required']">
+            Email is required
+          </span>
+          <span class="text-danger" *ngIf="email.touched && email.errors?.['email']">
+            Email is invalid format
+          </span>
+        </div>
+        <div class="col-md-6 mt-3">
+          <label class="form-label">Mobile</label>
+            <input type="text" class="form-control" name="mobile" #mobile="ngModel"
+            [(ngModel)]="cvItem.personal_Information.mobile" [class.is-invalid]="mobile.invalid && mobile.touched"
+            required>
+          <span class="text-danger" *ngIf="mobile.touched && mobile.errors?.['required']">
+            Mobile is required
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 mt-5">
+      <button type="submit" class="btn btn-primary" style="margin-right: 5px;" [disabled]="temFrm.invalid">Save
+        Change</button>
+      <button type="button" class="btn btn-warning" [routerLink]="['/cv-list']">Back</button>
+    </div>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <div class="ld ld-ring ld-spin-fast"></div>
+  </ng-template>
+</form>
